@@ -66,7 +66,7 @@ class ProductCategoryController extends Controller
     {
         $product_category = ProductCategories::find($id);
 
-        $product_subcategories = ProductSubCategories::where('category_id',$id)->whereNull('deleted_at')->get();
+        $product_subcategories = ProductSubCategories::where('category_id',$id)->whereNull('deleted_at')->paginate(2);
 
         return view('product_category/edit', compact('product_category','product_subcategories'));
     }

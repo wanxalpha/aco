@@ -56,7 +56,7 @@ Route::group(['prefix'=>'settings','as'=>'setting.'], function(){
     // Product subcategory
     Route::post('/product_subcategory/store', 'ProductSubCategoryController@store')->name('product.subcategory.store');
     Route::get('/product_subcategory/edit/{id}', 'ProductSubCategoryController@edit')->name('product.subcategory.edit');
-    Route::post('/product_subcategory/update/{id}', 'ProductSubCategoryController@update')->name('product.subcategory.update');
+    Route::patch('/product_subcategory/update/{id}', 'ProductSubCategoryController@update')->name('product.subcategory.update');
     Route::get('/product_subcategory/delete/{id}', 'ProductSubCategoryController@delete')->name('product.subcategory.delete');
 
 });

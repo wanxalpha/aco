@@ -77,7 +77,7 @@
                   
                 </form>
 
-                <table class="table table-hover">
+                <table class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>No</th>
@@ -91,39 +91,15 @@
                           <td>{{ ++$key }}</td>
                           <td>{{$product_subcategory->name}}</td>
                           <td>
-                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit-modal">Edit</button>
+                            <!-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit-modal">Edit</button> -->
+                            <a class="btn btn-info btn-sm" href="#" data-toggle="modal" data-target="#ModalEdit{{$product_subcategory->id}}">{{ __('Edit') }}</a>
                             <a href="{{ url('/settings/product_subcategory/delete/'.$product_subcategory->id) }}" class="btn btn-danger btn-sm">Delete</a>
                           </td>
-                      </tr>
-
-                      <!-- edit modal -->
-                      <div class="modal fade" id="edit-modal">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h4 class="modal-title" align="center">Edit Sub Category</h4>
-                            </div>
-                            <div class="modal-body">
-                              <form action=" {{ url('/settings/product_subcategory/update/'.$product_subcategory->id) }}" method="POST">
-                                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                                <div class="box-body">
-                                  <div class="form-group">
-                                    <label for="exampleInputEmail1">Name</label> 
-                                    <input type="text" class="form-control" name="name" placeholder="Name" value="{{ $product_subcategory->name }}">
-                                  </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                  <button type="submit" class="btn btn-info">Save changes</button>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      
+                          @include('product_category.modal.edit')
+                      </tr>                      
                     @endforeach
                   </tbody>
+                  {{ $product_subcategories->links() }}
                 </table>
               </div>
             </div>
@@ -134,3 +110,26 @@
     </section>
     <!-- /.content -->
 @endsection
+
+@push('script')
+<script>
+
+$(document).ready(function () {
+
+  $('body').on('click', '#editCompany', function (event) {
+
+event.preventDefault();
+var id = $(this).data('id');
+console.log(id)
+$.get('color/' + id + '/edit', function (data) {
+     $('#userCrudModal').html("Edit category");
+     $('#submit').val("Edit category");
+     $('#practice_modal').modal('show');
+     $('#color_id').val(data.data.id);
+     $('#name').val(data.data.name);
+ })
+});
+
+}); 
+</script>
+@endpush 
