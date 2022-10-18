@@ -24,12 +24,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Merchant Product</h1>
+            <h1 class="m-0 text-dark">Partner</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-              <li class="breadcrumb-item active">Merchant Product</li>
+              <li class="breadcrumb-item active">Partner</li>
             </ol>
           </div>
         </div>
@@ -40,7 +40,7 @@
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
-                <a href="{{ route('merchant.product.create') }}" class="btn-block btn-info"><button type="button" class="btn btn-block btn-info">Create</button></a>
+                <a href="{{ route('partner.create') }}" class="btn-block btn-info"><button type="button" class="btn btn-block btn-info">Create</button></a>
               </li>
             </ol>
           </div>
@@ -62,35 +62,21 @@
                     <tr>
                       <th>No</th>
                       <th>Name</th>
-                      <th>Type</th>
-                      <th>Category</th>
-                      <th>Member Price (RM)</th>
-                      <th>Non Member Price (RM)</th>
-                      <th>Available Quantity</th>
-                      <th>Status</th>
+                      <th>Mobile Number</th>
+                      <th>Email</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($products as $key => $product)
+                    @foreach($partners as $key => $partner)
                       <tr>
                           <td>{{ ++$key }}</td>
-                          <td>{{$product->name}}</td>
-                          <td>Voucher</td>
-                          <td>{{$product->category->name}}</td>
-                          <td>{{$product->member_price}}</td>
-                          <td>{{$product->non_member_price}}</td>
-                          <td>{{$product->available_quantity}}</td>
+                          <td>{{$partner->name}}</td>
+                          <td>{{$partner->mobile_number}}</td>
+                          <td>{{$partner->email}}</td>
                           <td>
-                            @if($product->status == 1)
-                              Active
-                            @elseif($product->status == 2)
-                              Non-Active
-                            @endif
-                          </td>
-                          <td>
-                            <a href="{{ url('/merchant_product/edit/'.$product->id) }}" class="btn btn-info btn-sm">Edit</a>
-                            <a href="{{ url('/merchant_product/delete/'.$product->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{{ url('/partner/edit/'.$partner->id) }}" class="btn btn-info btn-sm">Edit</a>
+                            <a href="{{ url('/partner/delete/'.$partner->id) }}" class="btn btn-danger btn-sm">Delete</a>
                           </td>
                       </tr>
                     @endforeach

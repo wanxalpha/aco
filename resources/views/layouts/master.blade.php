@@ -228,11 +228,11 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link 
-                @if($segment=='news')
+              <a href="{{ route('partner.index') }}" class="nav-link 
+                @if($segment=='partner')
                 active
                 @endif">
-                <i class="nav-icon fas fa-chart-pie"></i>
+                <i class="nav-icon fa fa-th"></i>
                 <p>
                   Partner
                 </p>
@@ -288,7 +288,7 @@
           @elseif(Auth::user()->role == '1')
             <li class="nav-item">
               <a href="{{ route('merchant.product.index') }}" class="nav-link 
-                @if($segment=='product')
+                @if($segment=='merchant_product')
                 active
                 @endif">
                 <i class="nav-icon fa fa-th"></i>
@@ -297,6 +297,18 @@
                 </p>
               </a>
             </li>
+          @elseif(Auth::user()->role == '2')
+          <li class="nav-item">
+            <a href="{{ route('insurance.index') }}" class="nav-link 
+              @if($segment=='insurance')
+              active
+              @endif">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Insurance
+              </p>
+            </a>
+          </li>
           @endif
           <li class="nav-header">Action</li>
           <li class="nav-item">

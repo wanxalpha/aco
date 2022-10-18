@@ -68,7 +68,7 @@
 
                     <div class="float-sm-right">
                       <label for="subcategory_name">&nbsp;</label>
-                      <button type="submit" class="btn btn-block btn-info">Submit</button>
+                      <button type="submit" class="btn btn-block btn-info">Add</button>
                     </div>
                   </div>
 

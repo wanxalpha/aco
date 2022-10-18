@@ -31,6 +31,14 @@ Route::get('/merchant/edit/{id}', 'MerchantController@edit')->name('merchant.edi
 Route::post('/merchant/update/{id}', 'MerchantController@update')->name('merchant.update');
 Route::get('/merchant/delete/{id}', 'MerchantController@delete')->name('merchant.delete');
 
+// Partner
+Route::get('/partner', 'PartnerController@index')->name('partner.index');
+Route::get('/partner/create', 'PartnerController@create')->name('partner.create');
+Route::post('/partner/store', 'PartnerController@store')->name('partner.store');
+Route::get('/partner/edit/{id}', 'PartnerController@edit')->name('partner.edit');
+Route::post('/partner/update/{id}', 'PartnerController@update')->name('partner.update');
+Route::get('/partner/delete/{id}', 'PartnerController@delete')->name('partner.delete');
+
 //merchant product
 Route::get('/merchant_product', 'MerchantProductController@index')->name('merchant.product.index');
 Route::get('/merchant_product/create', 'MerchantProductController@create')->name('merchant.product.create');
@@ -38,6 +46,16 @@ Route::post('/merchant_product/store', 'MerchantProductController@store')->name(
 Route::get('/merchant_product/edit/{id}', 'MerchantProductController@edit')->name('merchant.product.edit');
 Route::post('/merchant_product/update/{id}', 'MerchantProductController@update')->name('merchant.product.update');
 Route::get('/merchant_product/delete/{id}', 'MerchantProductController@delete')->name('merchant.product.delete');
+
+Route::get('/merchant_product/find_subcategory','MerchantProductController@find_subcategory')->name('get.subcategory');
+
+//insurance
+Route::get('/insurance', 'InsuranceController@index')->name('insurance.index');
+Route::get('/insurance/create', 'InsuranceController@create')->name('insurance.create');
+Route::post('/insurance/store', 'InsuranceController@store')->name('insurance.store');
+Route::get('/insurance/edit/{id}', 'InsuranceController@edit')->name('insurance.edit');
+Route::post('/insurance/update/{id}', 'InsuranceController@update')->name('insurance.update');
+Route::get('/insurance/delete/{id}', 'InsuranceController@delete')->name('insurance.delete');
 
 Route::group(['prefix'=>'settings','as'=>'setting.'], function(){
     // Merchant category

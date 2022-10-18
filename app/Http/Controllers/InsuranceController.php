@@ -8,7 +8,7 @@ use App\ProductCategories;
 use App\ProductSubCategories;
 use Auth;
 
-class MerchantProductController extends Controller
+class InsuranceController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -29,7 +29,7 @@ class MerchantProductController extends Controller
     {
         $products = MerchantProduct::whereNull('deleted_at')->get();
 
-        return view('merchant_product.index', compact('products'));
+        return view('insurance.index', compact('products'));
     }
 
     /**
@@ -41,7 +41,7 @@ class MerchantProductController extends Controller
     {
         $product_categories = ProductCategories::whereNull('deleted_at')->get();
 
-        return view('merchant_product.create', compact('product_categories'));
+        return view('insurance.create', compact('product_categories'));
     }
 
     public function store(Request $request)

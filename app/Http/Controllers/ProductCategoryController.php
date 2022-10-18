@@ -66,7 +66,7 @@ class ProductCategoryController extends Controller
     {
         $product_category = ProductCategories::find($id);
 
-        $product_subcategories = ProductSubCategories::where('category_id',$id)->whereNull('deleted_at')->paginate(2);
+        $product_subcategories = ProductSubCategories::where('category_id',$id)->whereNull('deleted_at')->paginate(5);
 
         return view('product_category/edit', compact('product_category','product_subcategories'));
     }
@@ -95,6 +95,6 @@ class ProductCategoryController extends Controller
         $product_category->deleted_at = now();
         $product_category->update();
 
-        return redirect()->route('setting.product.category.index')->with('status','Product category Deleted Successfully');
+        return redirect()->route('setting.product.category.index')->with('success','Product category Deleted Successfully');
     }
 }

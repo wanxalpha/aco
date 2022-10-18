@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\PartnerDetails;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 
-class MerchantController extends Controller
+class PartnerController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -27,7 +28,7 @@ class MerchantController extends Controller
      */
     public function create()
     {
-        return view('merchant/create');
+        return view('partner/create');
     }
 
     /**
@@ -37,9 +38,9 @@ class MerchantController extends Controller
      */
     public function index()
     {
-        $merchants = User::where('role','=','1')->whereNull('deleted_at')->get();
+        $partners = User::where('role','=','2')->whereNull('deleted_at')->get();
 
-        return view('merchant/index', compact('merchants'));
+        return view('partner/index', compact('partners'));
     }
 
     public function store(Request $request)
@@ -58,26 +59,34 @@ class MerchantController extends Controller
         $user->mobile_number = request('mobile_number');
         $user->phone_number = request('phone_number');
         $user->address = request('address');
-        $user->role = '1'; //role 1 = merchant
+        $user->role = '2'; //role 2 = partner
         $user->password = Hash::make($password);
         $user->created_by = Auth::user()->id;
         $user->created_at = now();
         $user->save();
 
-        return redirect()->route('merchant.index')->with('success', 'Success create merchant');
+        $partner_details = new PartnerDetails;
+        $partner_details->user_id = $user->id;
+        $partner_details->business_registration_no = request('business_registration_no');
+        $partner_details->category_id = request('category_id');
+        $partner_details->created_by = Auth::user()->id;
+        $partner_details->created_at = now();
+        $partner_details->save();
+
+        return redirect()->route('partner.index')->with('success', 'Success create partner');
     }
 
     public function edit($id)
     {
-        $merchant = User::find($id);
-        return view('merchant/edit', compact('merchant'));
+        $partner = User::find($id);
+
+        return view('partner/edit', compact('partner'));
     }
 
     public function update(Request $request, $id)
     {
         $user = User::find($id);
         $user->name = $request->input('name');
-        // $user->email = $request->input('email');
         $user->mobile_number = $request->input('mobile_number');
         $user->phone_number = $request->input('phone_number');
         $user->phone_number = $request->input('phone_number');
@@ -86,7 +95,14 @@ class MerchantController extends Controller
         $user->updated_at = now();
         $user->update();
 
-        return redirect()->route('merchant.index')->with('success', 'Success update merchant');
+        $partner_details = PartnerDetails::where('user_id', $id)->first();
+        $partner_details->business_registration_no = request('business_registration_no');
+        $partner_details->category_id = request('category_id');
+        $partner_details->updated_by = Auth::user()->id;
+        $partner_details->updated_at = now();
+        $partner_details->update();
+
+        return redirect()->route('partner.index')->with('success', 'Success update partner');
     }
 
     public function delete($id)
@@ -95,6 +111,6 @@ class MerchantController extends Controller
         $user->deleted_at = now();
         $user->update();
 
-        return redirect()->route('merchant.index')->with('status','Merchant Deleted Successfully');
+        return redirect()->route('partner.index')->with('status','Merchant Deleted Successfully');
     }
 }

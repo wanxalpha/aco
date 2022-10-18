@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Merchant Product</h1>
+            <h1 class="m-0 text-dark">Insurance</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('merchant.product.index') }}">Merchant Product</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('insurance.index') }}">Insurance</a></li>
               <li class="breadcrumb-item active">Create</li>
             </ol>
           </div>
@@ -27,42 +27,12 @@
           <section class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <form action=" {{ route('merchant.product.store') }}" method="POST">
+                <form action=" {{ route('insurance.store') }}" method="POST">
                 {{ csrf_field() }}
                   <div class="row">
                     <div class="form-group col-md-3">
                       <label for="name">Name</label>
                       <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
-                    </div>
-
-                    <div class="form-group col-md-3">
-                      <label for="type_id">Type</label>
-                      <select class="custom-select rounded-0" id="type_id" name="type_id">
-                        <option hidden value="">Select Type</option>
-                        <option value='1'>Voucher</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                      <label for="category_id">Category</label>
-                      <select class="custom-select rounded-0" id="category_id" name="category_id">
-                        <option hidden value="">Select Category</option>
-                        @foreach($product_categories as $product_category)
-                          <option value='{{ $product_category->id }}'>{{ $product_category->name }}</option>
-                        @endforeach
-                      </select>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                      <label for="category">Sub Category</label>
-                      <select id="sub_category_id" name="sub_category_id" class="form-control col-md-12" required>
-                      <option hidden value="">Select Subcategory</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                      <label for="available_quantity">Available Quantity</label>
-                      <input type="text" class="form-control" id="available_quantity" name="available_quantity" placeholder="Enter available quantity">
                     </div>
 
                     <div class="form-group col-md-3">
