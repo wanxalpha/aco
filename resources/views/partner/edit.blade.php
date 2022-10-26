@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="form-group col-md-3">
-                      <label for="email">Email</label>
+                      <label for="email"><th>{{ __('common.email') }}</th></label>
                       <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{$partner->email}}" readonly='true' disabled='true'>
                     </div>
 

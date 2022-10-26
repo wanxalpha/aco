@@ -80,9 +80,9 @@
                 <table class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th>No</th>
-                      <th>Name</th>
-                      <th>Action</th>
+                      <th>{{ __('common.no') }}</th>
+                      <th>{{ __('common.name') }}</th>
+                      <th>{{ __('common.action') }}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -93,7 +93,7 @@
                           <td>
                             <!-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit-modal">Edit</button> -->
                             <a class="btn btn-info btn-sm" href="#" data-toggle="modal" data-target="#ModalEdit{{$product_subcategory->id}}">{{ __('Edit') }}</a>
-                            <a href="{{ url('/settings/product_subcategory/delete/'.$product_subcategory->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{{ url('/settings/product_subcategory/delete/'.$product_subcategory->id) }}" class="btn btn-danger btn-sm">{{ __('common.delete') }}</a>
                           </td>
                           @include('product_category.modal.edit')
                       </tr>                      

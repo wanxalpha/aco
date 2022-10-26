@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Merchant Product</h1>
+            <h1 class="m-0 text-dark">Insurance</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('merchant.product.index') }}">Merchant Product</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('insurance.index') }}">Insurance</a></li>
               <li class="breadcrumb-item active">Edit</li>
             </ol>
           </div>
@@ -27,70 +27,90 @@
           <section class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <form action=" {{ url('/merchant_product/update/'.$merchant_product->id) }}) }}" method="POST">
+                <form action=" {{ url('/insurance/update/'.$insurance->id) }}" method="POST">
                 {{ csrf_field() }}
                   <div class="row">
                     <div class="form-group col-md-3">
                       <label for="name">Name</label>
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" value="{{$merchant_product->name}}">
-                    </div>
-
-                    <div class="form-group col-md-3">
-                      <label for="type">Type</label>
-                      <select class="custom-select rounded-0" id="type_id" name="type_id">
-                        <option hidden value="">Select Type</option>
-                        <option value='1' {{ $merchant_product->type_id == '1' ? 'selected' : ''  }}>Voucher</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                      <label for="category">Category</label>
-                      <select class="custom-select rounded-0" id="category_id" name="category_id">
-                        <option hidden value="">Select Category</option>
-                        @foreach($product_categories as $product_category)
-                          <option value='{{ $product_category->id }}' {{ $merchant_product->category_id == $product_category->id ? 'selected' : ''  }}>{{ $product_category->name }}</option>
-                        @endforeach
-                      </select>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                      <label for="category">Sub Category</label>
-                      <select id="sub_category_id" name="sub_category_id" class="form-control col-md-12" required>
-                      <option hidden value="{{ $merchant_product->sub_category_id }}">{{ $merchant_product->subcategory->name }}</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group col-md-3">
-                      <label for="available_quantity">Available Quantity</label>
-                      <input type="text" class="form-control" id="available_quantity" name="available_quantity" placeholder="Enter available quantity" value="{{$merchant_product->available_quantity}}">
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" value="{{$insurance->name}}">
                     </div>
 
                     <div class="form-group col-md-3">
                       <label for="status">Status</label>
                       <select class="custom-select rounded-0" id="status" name="status">
                         <option hidden value="">Select Status</option>
-                        <option value='1'>Active</option>
-                        <option value='2'>Non-active</option>
+                        <option value='1' {{ $insurance->status == 1 ? 'selected' : '' }}>Active</option>
+                        <option value='2' {{ $insurance->status == 2 ? 'selected' : '' }}>Non-active</option>
                       </select>
                     </div>
-
-                    <div class="form-group col-md-3">
-                      <label for="member_price">Member Price</label>
-                      <input type="text" class="form-control" id="member_price" name="member_price" placeholder="Enter member price" value="{{$merchant_product->member_price}}">
+                    
+                    <div class="form-group col-md-2">
+                      <label for="epolicy">E-policy</label>
+                      <input type="file" name="epolicy" id="epolicy" class="form-control">
                     </div>
 
-                    <div class="form-group col-md-3">
-                      <label for="non_member_price">Non-Member Price</label>
-                      <input type="text" class="form-control" id="non_member_price" name="non_member_price" placeholder="Enter non member price" value="{{$merchant_product->non_member_price}}">
+                    <div class="form-group col-md-1">
+                      <label for="epolicy">&nbsp;</label>
+                      <a href="{{ asset('storage/insurance/' . $insurance->epolicy) }}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-2">
+                      <label for="ecertificate">E-certificate</label>
+                      <input type="file" name="ecertificate" id="ecertificate" class="form-control">
+                    </div>
+
+                    <div class="form-group col-md-1">
+                      <label for="ecertificate">&nbsp;</label>
+                      <a href="{{ asset('storage/insurance/' . $insurance->ecertificate) }}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                      <label for="important_notice">Important Notice</label>
+                      <input type="file" name="important_notice" id="important_notice" class="form-control">
+                    </div>
+
+                    <div class="form-group col-md-1">
+                      <label for="important_notice">&nbsp;</label>
+                      <a href="{{ asset('storage/insurance/' . $insurance->important_notice) }}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                      <label for="insurance_plan">Insurance Plan</label>
+                      <input type="file" name="insurance_plan" id="insurance_plan" class="form-control">
+                    </div>
+
+                    <div class="form-group col-md-1">
+                      <label for="insurance_plan">&nbsp;</label>
+                      <a href="{{ asset('storage/insurance/' . $insurance->insurance_plan) }}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="col-md-12">
                       <label for="description">Description</label>
-                      <textarea class="form-control" id="description" name="description" placeholder="Enter description">{{$merchant_product->description}}</textarea>
+                      <textarea id="description" name="description">
+                        {{ $insurance->description }}
+                      </textarea>
                     </div>
                   </div>
               
-                  <input type="text" class="form-control" id="subcategory_id" name="subcategory_id" value="{{$merchant_product->sub_category_id}}">
+                  <div class="mb-3 col-md-12">
+                    <label for="name" class="form-label">{{ __('partner.questionaire') }}</label>
+                    <button type="button" class="btn btn-s-md btn-danger float-right" name="add" id="add">{{ __('common.add_more') }}</button>
+                  </div>
+
+                  <div class="table-responsive col-lg-12">  
+                    <table class="col-lg-7" id="dynamic_field">   
+                      <?php $no = 1 ?> 
+                      @foreach($insurance_questionaire as $key => $question)
+                        <tr id="row_old{{ $key }}" class="dynamic-added">
+                            <td class="col-lg-2 numbering">{{ $no++ }} )</td>
+                            <td class="col-lg-8">
+                                <input type="text" name="question[{{$question->id}}]" style="margin-top:5px" placeholder="" class="form-control checklist" value="{{ $question->question }}"/>
+                            </td>
+                            <td class="col-lg-2"><i name="remove" id="{{ $no }}"class="fa fa-times"></i></td>
+                        </tr>
+                      @endforeach  
+                    </table>
+                  </div>
                 
                   <div class="float-sm-right">
                         <button type="submit" class="btn btn-block btn-info">Submit</button>
@@ -106,30 +126,58 @@
     <!-- /.content -->
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(document).on('change', '#category_id', function() {
-            var category_id =  $(this).val();
-            var op = "";
-            
-            $.ajax({
-                type: 'get',
-                url: '{{ route('get.subcategory') }}',
-                data: { 'id': category_id },
-                dataType: 'json',      //return data will be json
-                success: function(data) {
-                    console.log(data);
- 
-                    for (var i = 0; i < data.length; i++){
-                      op += '<option selected  value="'+data[i].id+'">'+data[i].name+'</option>';
-                    }
-                    $('#sub_category_id').html(" ");
-                    $("#sub_category_id").append(op);
-                },
-                error:function(){
+<script>
+  $(function () {
+    // Summernote
+    $('#description').summernote()
 
-                }
-            });
-        });
+  })
+</script>
+<script>
+
+
+  $(document).ready(function(){   
+
+    var i=1;  
+
+
+    $('#add').click(function(){  
+     i++;  
+     $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td class="col-lg-2 numbering"></td><td class="col-lg-8"><input type="text" name="new[]" placeholder="" class="form-control checklist"/></td><td class="col-lg-2"><i name="remove" id="'+i+'"class="fa fa-times"></i></td></tr>');
+     dynamicNumber();
+   });  
+
+    $(document).on('click', 'i', function(){  
+     var button_id = $(this).attr("id");   
+     $('#row'+button_id+'').remove();
+     dynamicNumber();
+   });  
+
+   $(document).on('click', 'i', function(){  
+           var button_id = $(this).attr("id");   
+           $(this).closest("tr").remove();
+           dynamicNumber();
+      });
+
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
     });
-    </script>
+
+    function dynamicNumber() {
+      $(".numbering").each(function(i, v){
+        $(this).html((i+1)+" )");
+      });
+    }
+
+    function printErrorMsg (msg) {
+     $(".print-error-msg").find("ul").html('');
+     $(".print-error-msg").css('display','block');
+     $(".print-success-msg").css('display','none');
+     $.each( msg, function( key, value ) {
+      $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+    });
+   }
+ });  
+</script>

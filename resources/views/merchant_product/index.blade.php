@@ -40,7 +40,7 @@
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
-                <a href="{{ route('merchant.product.create') }}" class="btn-block btn-info"><button type="button" class="btn btn-block btn-info">Create</button></a>
+                <a href="{{ route('merchant.product.create') }}" class="btn-block btn-info"><button type="button" class="btn btn-block btn-info">{{ __('common.create') }}</button></a>
               </li>
             </ol>
           </div>
@@ -60,15 +60,15 @@
                 <table id="example2" class="table table-hover">
                   <thead>
                     <tr>
-                      <th>No</th>
-                      <th>Name</th>
-                      <th>Type</th>
-                      <th>Category</th>
+                      <th>{{ __('common.no') }}</th>
+                      <th>{{ __('common.name') }}</th>
+                      <th>{{ __('common.type') }}</th>
+                      <th>{{ __('common.category') }}</th>
                       <th>Member Price (RM)</th>
                       <th>Non Member Price (RM)</th>
                       <th>Available Quantity</th>
-                      <th>Status</th>
-                      <th>Action</th>
+                      <th>{{ __('common.status') }}</th>
+                      <th>{{ __('common.action') }}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -89,8 +89,8 @@
                             @endif
                           </td>
                           <td>
-                            <a href="{{ url('/merchant_product/edit/'.$product->id) }}" class="btn btn-info btn-sm">Edit</a>
-                            <a href="{{ url('/merchant_product/delete/'.$product->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{{ url('/merchant_product/edit/'.$product->id) }}" class="btn btn-info btn-sm">{{ __('common.edit') }}</a>
+                            <a href="{{ url('/merchant_product/delete/'.$product->id) }}" class="btn btn-danger btn-sm">{{ __('common.delete') }}</a>
                           </td>
                       </tr>
                     @endforeach

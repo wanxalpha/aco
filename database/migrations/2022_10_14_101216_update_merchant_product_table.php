@@ -14,6 +14,7 @@ class UpdateMerchantProductTable extends Migration
     public function up()
     {
         Schema::table('merchant_products', function($table) {
+            $table->string('image');
             $table->integer('sub_category_id');
         });
     }
@@ -26,6 +27,7 @@ class UpdateMerchantProductTable extends Migration
     public function down()
     {
         Schema::table('merchant_products', function($table) {
+            $table->dropColumn('image');
             $table->dropColumn('sub_category_id');
         });
     }

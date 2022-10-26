@@ -40,7 +40,7 @@
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
-                <a href="{{ route('setting.product_category.create') }}" class="btn-block btn-info"><button type="button" class="btn btn-block btn-info">Create</button></a>
+                <a href="{{ route('setting.product_category.create') }}" class="btn-block btn-info"><button type="button" class="btn btn-block btn-info">{{ __('common.create') }}</button></a>
               </li>
             </ol>
           </div>
@@ -60,10 +60,10 @@
                 <table id="example2" class="table table-hover">
                   <thead>
                     <tr>
-                      <th>No</th>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Action</th>
+                      <th>{{ __('common.no') }}</th>
+                      <th>{{ __('common.name') }}</th>
+                      <th>{{ __('common.description') }}</th>
+                      <th>{{ __('common.action') }}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -73,8 +73,8 @@
                           <td>{{$product_category->name}}</td>
                           <td>{{$product_category->description}}</td>
                           <td>
-                            <a href="{{ url('/settings/product_category/edit/'.$product_category->id) }}" class="btn btn-info btn-sm">Edit</a>
-                            <a href="{{ url('/settings/product_category/delete/'.$product_category->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{{ url('/settings/product_category/edit/'.$product_category->id) }}" class="btn btn-info btn-sm">{{ __('common.edit') }}</a>
+                            <a href="{{ url('/settings/product_category/delete/'.$product_category->id) }}" class="btn btn-danger btn-sm">{{ __('common.delete') }}</a>
                           </td>
                       </tr>
                     @endforeach

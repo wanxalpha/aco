@@ -27,7 +27,7 @@
           <section class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <form action=" {{ url('/merchant_product/update/'.$merchant_product->id) }}) }}" method="POST">
+                <form action=" {{ url('/merchant_product/update/'.$merchant_product->id) }}) }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                   <div class="row">
                     <div class="form-group col-md-3">
@@ -69,8 +69,8 @@
                       <label for="status">Status</label>
                       <select class="custom-select rounded-0" id="status" name="status">
                         <option hidden value="">Select Status</option>
-                        <option value='1'>Active</option>
-                        <option value='2'>Non-active</option>
+                        <option value='1' {{ $merchant_product->status == 1 ? 'selected' : ''  }}>Active</option>
+                        <option value='2' {{ $merchant_product->status == 2 ? 'selected' : ''  }}>Non-active</option>
                       </select>
                     </div>
 
@@ -84,14 +84,26 @@
                       <input type="text" class="form-control" id="non_member_price" name="non_member_price" placeholder="Enter non member price" value="{{$merchant_product->non_member_price}}">
                     </div>
 
-                    <div class="form-group col-md-6">
-                      <label for="description">Description</label>
-                      <textarea class="form-control" id="description" name="description" placeholder="Enter description">{{$merchant_product->description}}</textarea>
+                    <div class="form-group col-md-3">
+                      <label for="image">Image</label>
+                      <input type="file" name="image" id="image" class="form-control">
+                      @error('image')
+                          <code>{{ $message }}</code>
+                      @enderror
                     </div>
+
+                    <div class="form-group col-md-3">
+                      <img src="{{ asset('storage/products/' . $merchant_product->image) }}" height="150" width="150"/>
+                    </div>
+                    
+                      <div class="col-md-12">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description">
+                          {{$merchant_product->description}}
+                        </textarea>
+                      </div>
                   </div>
               
-                  <input type="text" class="form-control" id="subcategory_id" name="subcategory_id" value="{{$merchant_product->sub_category_id}}">
-                
                   <div class="float-sm-right">
                         <button type="submit" class="btn btn-block btn-info">Submit</button>
                   </div>
@@ -105,6 +117,32 @@
     </section>
     <!-- /.content -->
 @endsection
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+<!-- Summernote -->
+<script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
+<!-- CodeMirror -->
+<script src="{{ asset('plugins/codemirror/codemirror.js') }}"></script>
+<script src="{{ asset('plugins/codemirror/mode/css/css.js') }}"></script>
+<script src="{{ asset('plugins/codemirror/mode/xml/xml.js') }}"></script>
+<script src="{{ asset('plugins/codemirror/mode/htmlmixed/htmlmixed.js') }}"></script>
+
+<script>
+  $(function () {
+    // Summernote
+    $('#description').summernote()
+
+    // CodeMirror
+    CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+      mode: "htmlmixed",
+      theme: "monokai"
+    });
+  })
+</script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {

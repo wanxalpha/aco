@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\MerchantProduct;
 use App\ProductCategories;
 use App\ProductSubCategories;
+use App\MerchantProductAttachment;
 use Auth;
 
 class MerchantProductController extends Controller
@@ -74,6 +75,36 @@ class MerchantProductController extends Controller
         return view('merchant_product/edit', compact('merchant_product','product_categories'));
     }
 
+    public function update($id, Request $request){
+
+        $request->validate([
+            'image' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
+        ]);
+
+        $merchant_product = MerchantProduct::find($id);
+        $merchant_product->name = request('name');
+        $merchant_product->description = request('description');
+        $merchant_product->merchant_id = Auth::user()->id;
+        $merchant_product->type_id = request('type_id');
+        $merchant_product->category_id = request('category_id');
+        $merchant_product->sub_category_id = request('sub_category_id');
+        $merchant_product->available_quantity = request('available_quantity');
+        $merchant_product->status = request('status');
+        $merchant_product->member_price = request('member_price');
+        $merchant_product->non_member_price = request('non_member_price');
+        $merchant_product->updated_by = Auth::user()->id;
+        $merchant_product->updated_at = now();
+        
+
+        if ($request->hasFile('image')) {
+            
+            $request->image->store('products', 'public');
+            $merchant_product->image = $request->image->hashName();
+        }
+
+        $merchant_product->update();
+        return redirect()->route('merchant.product.index')->with('success', 'Product Updated Successfully');
+    }
     public function delete($id)
     {
         $product_category = MerchantProduct::find($id);

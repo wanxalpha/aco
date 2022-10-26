@@ -50,7 +50,7 @@ Route::get('/merchant_product/delete/{id}', 'MerchantProductController@delete')-
 Route::get('/merchant_product/find_subcategory','MerchantProductController@find_subcategory')->name('get.subcategory');
 
 //insurance
-Route::get('/insurance', 'InsuranceController@index')->name('insurance.index');
+Route::get('/insurances', 'InsuranceController@index')->name('insurance.index');
 Route::get('/insurance/create', 'InsuranceController@create')->name('insurance.create');
 Route::post('/insurance/store', 'InsuranceController@store')->name('insurance.store');
 Route::get('/insurance/edit/{id}', 'InsuranceController@edit')->name('insurance.edit');

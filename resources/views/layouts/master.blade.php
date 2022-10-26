@@ -84,7 +84,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="{{ asset('dist/img/user1-128x128.jpg') }}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -100,7 +100,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="{{ asset('dist/img/user8-128x128.jpg') }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -116,7 +116,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="{{ asset('dist/img/user3-128x128.jpg') }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -194,139 +194,7 @@
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <?php
-            $segment = Request::segment(1);
-            $segment2 = Request::segment(2);
-          ?>     
-          <li class="nav-item">
-            <a href="{{ route('home') }}" class="nav-link 
-              @if(!$segment || $segment=='home')
-              active
-              @endif
-              ">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-            
-          </li>
-          @if(Auth::user()->role == '0')
-            <li class="nav-item">
-              <a href="{{ route('merchant.index') }}" class="nav-link 
-                @if($segment=='merchant')
-                active
-                @endif">
-                <i class="nav-icon fa fa-th"></i>
-                <p>
-                  Merchant
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('partner.index') }}" class="nav-link 
-                @if($segment=='partner')
-                active
-                @endif">
-                <i class="nav-icon fa fa-th"></i>
-                <p>
-                  Partner
-                </p>
-              </a>
-            </li>
-            
-            <li class="nav-item">
-              <a href="" class="nav-link 
-                    @if($segment=='settings')
-                    active
-                    @endif">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>
-                  Settings
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview" style="@if($segment=='settings')
-                  display: block;
-                  @endif">
-                <li class="nav-item">
-                  <a href="{{ route('setting.merchant.category.index') }}" class="nav-link
-                    @if($segment2=='merchant_category')
-                    active
-                    @endif">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Merchant Categories</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('setting.product.category.index') }}" class="nav-link
-                    @if($segment2=='product_category')
-                    active
-                    @endif">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Product Categories</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/forms/editors.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Editors</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/forms/validation.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Validation</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          @elseif(Auth::user()->role == '1')
-            <li class="nav-item">
-              <a href="{{ route('merchant.product.index') }}" class="nav-link 
-                @if($segment=='merchant_product')
-                active
-                @endif">
-                <i class="nav-icon fa fa-th"></i>
-                <p>
-                  Product
-                </p>
-              </a>
-            </li>
-          @elseif(Auth::user()->role == '2')
-          <li class="nav-item">
-            <a href="{{ route('insurance.index') }}" class="nav-link 
-              @if($segment=='insurance')
-              active
-              @endif">
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                Insurance
-              </p>
-            </a>
-          </li>
-          @endif
-          <li class="nav-header">Action</li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('logout') }}"
-                  onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                <i class="nav-icon fa fa-circle-o text-danger"></i>
-                  {{ __('Logout') }}
-              </a>
-
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf
-              </form>
-           
-          </li>
-          
-        </ul>
-      </nav>
+      @include('layouts.sidebar')
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -388,5 +256,18 @@
 <script src="{{ asset('dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+
+<!-- AdminLTE App -->
+<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+<!-- CodeMirror -->
+<script src="{{ asset('plugins/codemirror/codemirror.js') }}"></script>
+<script src="{{ asset('plugins/codemirror/mode/css/css.js') }}"></script>
+<script src="{{ asset('plugins/codemirror/mode/xml/xml.js') }}"></script>
+<script src="{{ asset('plugins/codemirror/mode/htmlmixed/htmlmixed.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('dist/js/demo.js') }}"></script>
+
+<script src="{{ asset('js/jquery.repeater/jquery.repeater.min.js')}}"> </script>
+
 </body>
 </html>

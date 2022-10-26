@@ -13,7 +13,13 @@ return [
     |
     */
 
-    'merchant' => 'Merchant',
-    'merchant_category' => 'Merchant Category',
+    'partner' => 'Partner',
+    'insurance' => 'Insurance',
+    'business_registration_no' => 'Business Registration Number',
+    'epolicy' => 'E-policy',
+    'ecertificate' => 'E-certificate',
+    'important_notice' => 'Important Notice',
+    'insurance_plan' => 'Insurance Plan',
+    'questionaire' => 'Questionaire',
 
 ];

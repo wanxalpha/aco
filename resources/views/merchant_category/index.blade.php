@@ -24,12 +24,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Merchant Category</h1>
+            <h1 class="m-0 text-dark">{{ __('merchant.merchant_category') }}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-              <li class="breadcrumb-item active">Merchant Category</li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('common.home') }}</a></li>
+              <li class="breadcrumb-item active">{{ __('merchant.merchant_category') }}</li>
             </ol>
           </div>
         </div>
@@ -40,7 +40,7 @@
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
-                <a href="{{ route('setting.merchant.category.create') }}" class="btn-block btn-info"><button type="button" class="btn btn-block btn-info">Create</button></a>
+                <a href="{{ route('setting.merchant.category.create') }}" class="btn-block btn-info"><button type="button" class="btn btn-block btn-info">{{ __('common.create') }}</button></a>
               </li>
             </ol>
           </div>
@@ -60,10 +60,10 @@
                 <table id="example2" class="table table-hover">
                   <thead>
                     <tr>
-                      <th>No</th>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Action</th>
+                      <th>{{ __('common.no') }}</th>
+                      <th>{{ __('common.name') }}</th>
+                      <th>{{ __('common.description') }}</th>
+                      <th>{{ __('common.action') }}</th>
                     </tr>
                   </thead>
                   <tbody>
