@@ -26,6 +26,10 @@
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -192,7 +196,7 @@
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
-
+      
       <!-- Sidebar Menu -->
       @include('layouts.sidebar')
       <!-- /.sidebar-menu -->
@@ -266,6 +270,9 @@
 <script src="{{ asset('plugins/codemirror/mode/htmlmixed/htmlmixed.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+
 
 <script src="{{ asset('js/jquery.repeater/jquery.repeater.min.js')}}"> </script>
 

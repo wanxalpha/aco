@@ -5,7 +5,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">{{ __('Edit Sub Category') }}</h4>
+                    <h4 class="modal-title">{{ __('setting.edit_sub_category') }}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,13 +13,13 @@
                 <div class="modal-body">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>{{ __('Name') }}:</strong>
+                            <strong>{{ __('common.name') }}</strong>
                             <input type="text" class="form-control" name="name" placeholder="Name" value="{{ $product_subcategory->name }}">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-info">Save changes</button>
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{ __('common.close') }}</button>
+                        <button type="submit" class="btn btn-info">{{ __('common.save') }}</button>
                     </div>
                 </div>
             </div>

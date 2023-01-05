@@ -48,7 +48,7 @@
 
                     <div class="form-group col-md-3">
                       <label for="mobile_number">{{ __('common.mobile_number') }}</label>
-                      <input type="text" class="form-control" id="mobile_number" name="mobile_number" placeholder="{{ __('common.mobile_no') }}" value="{{old('mobile_number')}}">
+                      <input type="text" class="form-control" id="mobile_number" name="mobile_number" placeholder="{{ __('common.enter_mobile_no') }}" value="{{old('mobile_number')}}">
                       @error('mobile_number')
                           <code>{{ $message }}</code>
                       @enderror
@@ -56,7 +56,7 @@
 
                     <div class="form-group col-md-3">
                       <label for="phone_number">{{ __('common.phone_number') }}</label>
-                      <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="{{ __('common.phone_no') }}" value="{{old('phone_number')}}">
+                      <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="{{ __('common.enter_phone_no') }}" value="{{old('phone_number')}}">
                       @error('phone_number')
                           <code>{{ $message }}</code>
                       @enderror

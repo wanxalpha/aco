@@ -6,13 +6,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Merchant</h1>
+            <h1 class="m-0 text-dark">{{ __('merchant.merchant') }}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('merchant.index') }}">Merchant</a></li>
-              <li class="breadcrumb-item active">Edit</li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('common.home') }}</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('merchant.index') }}">{{ __('merchant.merchant') }}</a></li>
+              <li class="breadcrumb-item active">{{ __('common.edit') }}</li>
             </ol>
           </div>
         </div>
@@ -31,7 +31,7 @@
                 {{ csrf_field() }}
                   <div class="row">
                     <div class="form-group col-md-3">
-                      <label for="name">Name</label>
+                      <label for="name">{{ __('common.name') }}</label>
                       <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" value="{{$merchant->name}}">
                       @error('name')
                           <div class="alert alert-danger">{{ $message }}</div>
@@ -44,23 +44,23 @@
                     </div>
 
                     <div class="form-group col-md-3">
-                      <label for="mobile_number">Mobile Number</label>
+                      <label for="mobile_number">{{ __('common.mobile_number') }}</label>
                       <input type="text" class="form-control" id="mobile_number" name="mobile_number" placeholder="Enter mobile number" value="{{$merchant->mobile_number}}">
                     </div>
 
                     <div class="form-group col-md-3">
-                      <label for="phone_number">Phone Number</label>
+                      <label for="phone_number">{{ __('common.phone_number') }}</label>
                       <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Enter phone number" value="{{$merchant->phone_number}}">
                     </div>
 
                     <div class="form-group col-md-6">
-                      <label for="address">Address</label>
+                      <label for="address">{{ __('common.address') }}</label>
                       <textarea class="form-control" id="address" name="address" placeholder="Enter address">{{$merchant->address}}</textarea>
                     </div>
                   </div>
                   <div class="float-sm-right">
               
-                        <button type="submit" class="btn btn-block btn-info">Submit</button>
+                        <button type="submit" class="btn btn-block btn-info">{{ __('common.submit') }}</button>
                   </div>
                 </form>
               </div>

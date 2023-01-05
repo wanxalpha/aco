@@ -19,8 +19,9 @@ class CreateMerchantCategoriesTable extends Migration
             $table->text('description');
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();
+            $table->integer('deleted_by')->nullable();
             $table->timestamps();
-            $table->dateTime('deleted_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

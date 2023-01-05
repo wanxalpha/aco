@@ -24,12 +24,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">{{ __('setting.product_category') }}</h1>
+            <h1 class="m-0 text-dark">{{ __('partner.microloan') }}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('common.home') }}</a></li>
-              <li class="breadcrumb-item active">{{ __('setting.product_category') }}</li>
+              <li class="breadcrumb-item active">{{ __('partner.microloan') }}</li>
             </ol>
           </div>
         </div>
@@ -40,7 +40,7 @@
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
-                <a href="{{ route('setting.product_category.create') }}" class="btn-block btn-info"><button type="button" class="btn btn-block btn-info">{{ __('common.create') }}</button></a>
+                <a href="{{ route('microloan.create') }}" class="btn-block btn-info"><button type="button" class="btn btn-block btn-info">{{ __('common.create') }}</button></a>
               </li>
             </ol>
           </div>
@@ -61,20 +61,30 @@
                   <thead>
                     <tr>
                       <th>{{ __('common.no') }}</th>
-                      <th>{{ __('common.name') }}</th>
-                      <th>{{ __('common.description') }}</th>
+                      <th>{{ __('partner.package_name') }}</th>
+                      <th>{{ __('partner.amount') }}</th>
+                      <th>{{ __('common.created_date') }}</th>
+                      <th>{{ __('common.status') }}</th>
                       <th>{{ __('common.action') }}</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach($product_categories as $key => $product_category)
+                    @foreach($microloans as $key => $microloan)
                       <tr>
                           <td>{{ ++$key }}</td>
-                          <td>{{$product_category->name}}</td>
-                          <td>{{$product_category->description}}</td>
+                          <td>{{$microloan->package_name}}</td>
+                          <td>{{$microloan->amount}}</td>
+                          <td>{{$microloan->created_at}}</td>
                           <td>
-                            <a href="{{ url('/settings/product_category/edit/'.$product_category->id) }}" class="btn btn-info btn-sm">{{ __('common.edit') }}</a>
-                            <a href="{{ url('/settings/product_category/delete/'.$product_category->id) }}" class="btn btn-danger btn-sm">{{ __('common.delete') }}</a>
+                            @if($microloan->status == 1)
+                              Active
+                            @elseif($microloan->status == 2)
+                              Non-Active
+                            @endif
+                          </td>
+                          <td>
+                            <a href="{{ url('/microloan/edit/'.$microloan->id) }}" class="btn btn-info btn-sm">{{ __('common.edit') }}</a>
+                            <a href="{{ url('/microloan/delete/'.$microloan->id) }}" class="btn btn-danger btn-sm">{{ __('common.delete') }}</a>
                           </td>
                       </tr>
                     @endforeach

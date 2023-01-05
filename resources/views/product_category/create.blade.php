@@ -6,13 +6,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Product Category</h1>
+            <h1 class="m-0 text-dark">{{ __('setting.product_category') }}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('setting.product.category.index') }}">Product Category</a></li>
-              <li class="breadcrumb-item active">Create</li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('common.home') }}</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('setting.product.category.index') }}">{{ __('setting.product_category') }}</a></li>
+              <li class="breadcrumb-item active">{{ __('common.create') }}</li>
             </ol>
           </div>
         </div>
@@ -31,18 +31,18 @@
                 {{ csrf_field() }}
                   <div class="row">
                     <div class="form-group col-md-3">
-                      <label for="name">Name</label>
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
+                      <label for="name">{{ __('common.name') }}</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('common.enter_name') }}">
                     </div>
 
                     <div class="form-group col-md-6">
-                      <label for="description">Description</label>
-                      <textarea class="form-control" id="description" name="description" placeholder="Enter description"></textarea>
+                      <label for="description">{{ __('common.description') }}</label>
+                      <textarea class="form-control" id="description" name="description" placeholder="{{ __('common.enter_description') }}"></textarea>
                     </div>
                   </div>
                   <div class="float-sm-right">
               
-                        <button type="submit" class="btn btn-block btn-info">Submit</button>
+                        <button type="submit" class="btn btn-block btn-info">{{ __('common.submit') }}</button>
                   </div>
                 </form>
               </div>

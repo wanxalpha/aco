@@ -46,8 +46,9 @@ Route::post('/merchant_product/store', 'MerchantProductController@store')->name(
 Route::get('/merchant_product/edit/{id}', 'MerchantProductController@edit')->name('merchant.product.edit');
 Route::post('/merchant_product/update/{id}', 'MerchantProductController@update')->name('merchant.product.update');
 Route::get('/merchant_product/delete/{id}', 'MerchantProductController@delete')->name('merchant.product.delete');
+Route::get('/merchant_product/delete_attachment/{id}', 'MerchantProductController@deleteAttachment')->name('merchant.product.delete_attachment');
 
-Route::get('/merchant_product/find_subcategory','MerchantProductController@find_subcategory')->name('get.subcategory');
+Route::get('/merchant_product/find_subcategory','MerchantProductController@findSubcategory')->name('get.subcategory');
 
 //insurance
 Route::get('/insurances', 'InsuranceController@index')->name('insurance.index');
@@ -56,6 +57,20 @@ Route::post('/insurance/store', 'InsuranceController@store')->name('insurance.st
 Route::get('/insurance/edit/{id}', 'InsuranceController@edit')->name('insurance.edit');
 Route::post('/insurance/update/{id}', 'InsuranceController@update')->name('insurance.update');
 Route::get('/insurance/delete/{id}', 'InsuranceController@delete')->name('insurance.delete');
+
+//micro loan
+Route::get('/microloan', 'MicroloanController@index')->name('microloan.index');
+Route::get('/microloan/create', 'MicroloanController@create')->name('microloan.create');
+Route::post('/microloan/store', 'MicroloanController@store')->name('microloan.store');
+Route::get('/microloan/edit/{id}', 'MicroloanController@edit')->name('microloan.edit');
+Route::post('/microloan/update/{id}', 'MicroloanController@update')->name('microloan.update');
+Route::get('/microloan/delete/{id}', 'MicroloanController@delete')->name('microloan.delete');
+
+// micro loan detail
+Route::post('/microloan/store_detail', 'MicroloanController@storeDetail')->name('microloan.store_detail');
+Route::post('/microloan/update_detail', 'MicroloanController@updateDetail')->name('microloan.update_detail');
+Route::get('/microloan/delete_detail/{id}', 'MicroloanController@deleteDetail')->name('microloan.delete_detail');
+
 
 Route::group(['prefix'=>'settings','as'=>'setting.'], function(){
     // Merchant category

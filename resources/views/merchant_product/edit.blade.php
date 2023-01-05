@@ -27,7 +27,7 @@
           <section class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                <form action=" {{ url('/merchant_product/update/'.$merchant_product->id) }}) }}" method="POST" enctype="multipart/form-data">
+                <form class="repeater" action="{{ url('/merchant_product/update/'.$merchant_product->id) }}) }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                   <div class="row">
                     <div class="form-group col-md-3">
@@ -83,27 +83,63 @@
                       <label for="non_member_price">Non-Member Price</label>
                       <input type="text" class="form-control" id="non_member_price" name="non_member_price" placeholder="Enter non member price" value="{{$merchant_product->non_member_price}}">
                     </div>
-
-                    <div class="form-group col-md-3">
-                      <label for="image">Image</label>
-                      <input type="file" name="image" id="image" class="form-control">
-                      @error('image')
-                          <code>{{ $message }}</code>
-                      @enderror
-                    </div>
-
-                    <div class="form-group col-md-3">
-                      <img src="{{ asset('storage/products/' . $merchant_product->image) }}" height="150" width="150"/>
-                    </div>
                     
-                      <div class="col-md-12">
-                        <label for="description">Description</label>
-                        <textarea id="description" name="description">
-                          {{$merchant_product->description}}
-                        </textarea>
+                    <div class="col-md-12">
+                      <label for="description">Description</label>
+                      <textarea id="description" name="description">
+                        {{$merchant_product->description}}
+                      </textarea>
+                    </div>
+
+                    <div class="row col-md-12">
+                      <div class="col-md-6">
+                        <label for="name" class="form-label">{{__('common.attachment')}}</label>
                       </div>
+                      <div class="col-md-6">
+                        <input data-repeater-create type="button" class="btn btn-success mt-3 mt-lg-0 float-right" value="Add" />
+                      </div>
+                    </div>
                   </div>
               
+                  <div class="mb-3 col-md-12">
+                    <div data-repeater-list="attachment_list">
+                      <div data-repeater-item class="row">
+                        <div class="mb-9 col-lg-9">
+                            <input type="file" name="attachment" id="attachment" class="form-control">
+                        </div>
+
+                        <div class="mb-2 col-lg-2">
+                          <input data-repeater-delete type="button" class="btn btn-danger form-control" value="Delete" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="mb-3 col-md-12">
+                    <table width='100%' class="table table-hover">
+                      <thead>
+                        <tr>
+                          <td>{{__('common.no')}}</td>
+                          <td>{{__('common.attachment')}}</td>
+                          <td>{{__('common.action')}}</td>
+                        </tr>
+                      </thead> 
+                      <tbody>
+                        @foreach($product_atachments as $key => $product_atachment)
+                          <tr>
+                            <td>{{ ++$key }}</td>
+                            <td>
+                              <a href="{{ asset('storage/products/' .$product_atachment->hashname) }}" target="_blank">{{ $product_atachment->filename }}</a>
+                            </td>
+                            <td>
+                              <a href="{{ url('/merchant_product/delete_attachment/'.$product_atachment->id) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            </td>
+                          </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                  </div>
+
                   <div class="float-sm-right">
                         <button type="submit" class="btn btn-block btn-info">Submit</button>
                   </div>
@@ -117,37 +153,68 @@
     </section>
     <!-- /.content -->
 @endsection
+<!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-<!-- Summernote -->
-<script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
-<!-- CodeMirror -->
-<script src="{{ asset('plugins/codemirror/codemirror.js') }}"></script>
-<script src="{{ asset('plugins/codemirror/mode/css/css.js') }}"></script>
-<script src="{{ asset('plugins/codemirror/mode/xml/xml.js') }}"></script>
-<script src="{{ asset('plugins/codemirror/mode/htmlmixed/htmlmixed.js') }}"></script>
 
 <script>
   $(function () {
     // Summernote
     $('#description').summernote()
 
-    // CodeMirror
-    CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-      mode: "htmlmixed",
-      theme: "monokai"
+    //Initialize Select2 Elements
+    $('.select2').select2({
+      theme: 'bootstrap4'
     });
   })
 </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
+<script>
+    $(document).ready(function () {
+        "use strict";
+        $(".repeater").repeater({
+            defaultValues: {
+                "textarea-input": "foo",
+                "text-input": "bar",
+                "select-input": "B",
+                "checkbox-input": ["A", "B"],
+                "radio-input": "B"
+            },
+            show: function () {
+                $(this).slideDown()
+            },
+            hide: function (e) {
+                confirm("Are you sure you want to delete this record?") && $(this).slideUp(e)
+            },
+            ready: function (e) {}
+        }), window.outerRepeater = $(".outer-repeater").repeater({
+            defaultValues: {
+                "text-input": "outer-default"
+            },
+            show: function () {
+                console.log("outer show"), $(this).slideDown()
+            },
+            hide: function (e) {
+                console.log("outer delete"), $(this).slideUp(e)
+            },
+            repeaters: [{
+                selector: ".inner-repeater",
+                defaultValues: {
+                    "inner-text-input": "inner-default"
+                },
+                show: function () {
+                    console.log("inner show"), $(this).slideDown()
+                },
+                hide: function (e) {
+                    console.log("inner delete"), $(this).slideUp(e)
+                }
+            }]
+        })
+
         $(document).on('change', '#category_id', function() {
+          console.log('asd');
             var category_id =  $(this).val();
+
+            var a = $(this).parent();
             var op = "";
             
             $.ajax({
@@ -159,7 +226,7 @@
                     console.log(data);
  
                     for (var i = 0; i < data.length; i++){
-                      op += '<option selected  value="'+data[i].id+'">'+data[i].name+'</option>';
+                      op += '<option value="'+data[i].id+'">'+data[i].name+'</option>';
                     }
                     $('#sub_category_id').html(" ");
                     $("#sub_category_id").append(op);
@@ -170,4 +237,4 @@
             });
         });
     });
-    </script>
+</script>

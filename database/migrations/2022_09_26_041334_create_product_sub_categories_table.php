@@ -21,7 +21,7 @@ class CreateProductSubCategoriesTable extends Migration
             $table->integer('updated_by')->nullable();
             $table->integer('deleted_by')->nullable();
             $table->timestamps();
-            $table->dateTime('deleted_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

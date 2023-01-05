@@ -10,7 +10,7 @@ class MerchantProduct extends Model
 {
     public function category()
     {
-        return $this->hasOne(ProductCategories::class,'id');
+        return $this->hasOne(ProductCategories::class,'id','category_id');
     }
 
     public function subcategory()

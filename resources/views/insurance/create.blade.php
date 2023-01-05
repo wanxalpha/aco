@@ -85,11 +85,11 @@
                     </div>
                   </div>
 
-                  <!-- <div class="mt-4">
+                  <div class="mt-4">
                       <input data-repeater-create type="button" class="btn btn-success mt-3 mt-lg-0  float-right" value="Add" />
-                  </div> -->
+                  </div>
 
-                  <!-- <div class="row">
+                  <div class="row">
                     <div class="mb-3 col-md-12">
                     <label for="name" class="form-label">Questionaire</label>
                       <div data-repeater-list="questionaire_list">
@@ -104,7 +104,7 @@
                             </div>
                         </div>
                       </div>
-                  </div> -->
+                  </div>
 
                   <div class="mb-3 col-md-12">
                   <label for="name" class="form-label">{{ __('partner.questionaire') }}</label>
@@ -194,8 +194,6 @@
 </script>
 
 <script>
-
-
   $(document).ready(function(){   
 
     var i=1;  

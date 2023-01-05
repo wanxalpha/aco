@@ -46,7 +46,7 @@ class MerchantController extends Controller
     {
 
         $validated = $request->validate([
-            'name' => 'string|required|max:255',
+            'name' => 'integer|required|max:255',
             'email' => 'email|required',
         ]);
 
@@ -75,6 +75,11 @@ class MerchantController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'name' => 'integer|required|max:255',
+            'email' => 'email|required',
+        ]);
+        
         $user = User::find($id);
         $user->name = $request->input('name');
         // $user->email = $request->input('email');

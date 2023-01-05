@@ -16,13 +16,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Product Category</h1>
+            <h1 class="m-0 text-dark">{{ __('setting.product_category') }}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('setting.product.category.index') }}">Product Category</a></li>
-              <li class="breadcrumb-item active">Edit</li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('common.home') }}</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('setting.product.category.index') }}">{{ __('setting.product_category') }}</a></li>
+              <li class="breadcrumb-item active">{{ __('common.edit') }}</li>
             </ol>
           </div>
         </div>
@@ -41,17 +41,17 @@
                   {{ csrf_field() }}
                   <div class="row">
                     <div class="form-group col-md-3">
-                      <label for="name">Name</label>
+                      <label for="name">{{ __('common.name') }}</label>
                       <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" value="{{$product_category->name}}">
                     </div>
 
                     <div class="form-group col-md-6">
-                      <label for="description">Description</label>
+                      <label for="description">{{ __('common.description') }}</label>
                       <textarea class="form-control" id="description" name="description" placeholder="Enter description">{{$product_category->description}}</textarea>
                     </div>
                   </div>
                   <div class="float-sm-right">
-                    <button type="submit" class="btn btn-block btn-info">Submit</button>
+                    <button type="submit" class="btn btn-block btn-info">{{ __('common.submit') }}</button>
                   </div>
                 </form>
 
@@ -62,13 +62,13 @@
                   {{ csrf_field() }}
                   <div class="row">
                     <div class="form-group col-md-3">
-                      <label for="subcategory_name">Sub Category Name</label>
-                      <input type="text" class="form-control" id="subcategory_name" name="subcategory_name" placeholder="Enter sub category name">
+                      <label for="subcategory_name">{{ __('common.sub_category') }}</label>
+                      <input type="text" class="form-control" id="subcategory_name" name="subcategory_name" placeholder="{{ __('common.enter_sub_category') }}">
                     </div>
 
                     <div class="float-sm-right">
                       <label for="subcategory_name">&nbsp;</label>
-                      <button type="submit" class="btn btn-block btn-info">Add</button>
+                      <button type="submit" class="btn btn-block btn-info">{{ __('common.add') }}</button>
                     </div>
                   </div>
 
@@ -92,7 +92,7 @@
                           <td>{{$product_subcategory->name}}</td>
                           <td>
                             <!-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit-modal">Edit</button> -->
-                            <a class="btn btn-info btn-sm" href="#" data-toggle="modal" data-target="#ModalEdit{{$product_subcategory->id}}">{{ __('Edit') }}</a>
+                            <a class="btn btn-info btn-sm" href="#" data-toggle="modal" data-target="#ModalEdit{{$product_subcategory->id}}">{{ __('common.edit') }}</a>
                             <a href="{{ url('/settings/product_subcategory/delete/'.$product_subcategory->id) }}" class="btn btn-danger btn-sm">{{ __('common.delete') }}</a>
                           </td>
                           @include('product_category.modal.edit')

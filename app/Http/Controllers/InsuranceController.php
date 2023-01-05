@@ -55,7 +55,7 @@ class InsuranceController extends Controller
         $insurance->created_at = now();
 
         if($request->hasFile('epolicy')) {
-
+// dd($request->epolicy);
             $request->epolicy->store('insurance', 'public');
             $insurance->epolicy = $request->epolicy->hashName();
         }

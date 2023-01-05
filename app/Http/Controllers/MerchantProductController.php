@@ -47,7 +47,6 @@ class MerchantProductController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $merchant_product = new MerchantProduct;
         
         $merchant_product->name = request('name');
@@ -64,6 +63,18 @@ class MerchantProductController extends Controller
         $merchant_product->created_at = now();
         $merchant_product->save();
 
+        foreach(request('attachment_list') as $attachment){
+            $attachment['attachment']->store('products', 'public');
+
+            $product_atachment = new MerchantProductAttachment;
+            $product_atachment->merchant_product_id = $merchant_product->id;
+            $product_atachment->path = __('merchant.storage_path');
+            $product_atachment->filename = $attachment['attachment']->hashName();
+            $product_atachment->created_by = Auth::user()->id;
+            $product_atachment->created_at = now();
+            $product_atachment->save();
+        }
+
         return redirect()->route('merchant.product.index')->with('success', 'Succes create product');
     }
 
@@ -71,8 +82,9 @@ class MerchantProductController extends Controller
     {
         $merchant_product = MerchantProduct::find($id);
         $product_categories = ProductCategories::whereNull('deleted_at')->get();
+        $product_atachments = MerchantProductAttachment::where('merchant_product_id',$id)->whereNull('deleted_at')->get();
 
-        return view('merchant_product/edit', compact('merchant_product','product_categories'));
+        return view('merchant_product/edit', compact('merchant_product','product_categories','product_atachments'));
     }
 
     public function update($id, Request $request){
@@ -94,28 +106,45 @@ class MerchantProductController extends Controller
         $merchant_product->non_member_price = request('non_member_price');
         $merchant_product->updated_by = Auth::user()->id;
         $merchant_product->updated_at = now();
-        
+        $merchant_product->update();
 
-        if ($request->hasFile('image')) {
-            
-            $request->image->store('products', 'public');
-            $merchant_product->image = $request->image->hashName();
+        foreach(request('attachment_list') as $attachment){
+            $attachment['attachment']->store('products', 'public');
+
+            $product_atachment = new MerchantProductAttachment;
+            $product_atachment->merchant_product_id = $merchant_product->id;
+            $product_atachment->path = __('merchant.storage_path');
+            $product_atachment->filename = $attachment['attachment']->getClientOriginalName();
+            $product_atachment->hashname = $attachment['attachment']->hashName();
+            $product_atachment->created_by = Auth::user()->id;
+            $product_atachment->created_at = now();
+            $product_atachment->save();
         }
 
-        $merchant_product->update();
         return redirect()->route('merchant.product.index')->with('success', 'Product Updated Successfully');
     }
+    
     public function delete($id)
     {
-        $product_category = MerchantProduct::find($id);
-        $product_category->deleted_by = Auth::user()->id;
-        $product_category->deleted_at = now();
-        $product_category->update();
+        $product = MerchantProduct::find($id);
+        $product->deleted_by = Auth::user()->id;
+        $product->deleted_at = now();
+        $product->update();
 
         return redirect()->route('merchant.product.index')->with('status','Product Deleted Successfully');
     }
 
-    public function find_subcategory(Request $request){
+    public function deleteAttachment($id)
+    {
+        $product_attachment = MerchantProductAttachment::find($id);
+        $product_attachment->deleted_by = Auth::user()->id;
+        $product_attachment->deleted_at = now();
+        $product_attachment->update();
+
+        return redirect()->back()->with('status','Product Attachment Deleted Successfully');
+    }
+
+    public function findSubcategory(Request $request){
         $data =  ProductSubCategories::where('category_id', $request->id)->get();
    
        return response()->json($data);

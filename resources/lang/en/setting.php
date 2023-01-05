@@ -12,7 +12,8 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'storage_path' => 'storage/products/',
+    'product_category' => 'Product Category',
+    'edit_sub_category' => 'Edit Sub Category',
 
     'merchant' => 'Merchant',
     'merchant_category' => 'Merchant Category',

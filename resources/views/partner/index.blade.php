@@ -64,6 +64,7 @@
                       <th>{{ __('common.name') }}</th>
                       <th>{{ __('common.mobile_number') }}</th>
                       <th>{{ __('common.email') }}</th>
+                      <th>{{ __('common.category') }}</th>
                       <th>{{ __('common.action') }}</th>
                     </tr>
                   </thead>
@@ -73,6 +74,8 @@
                           <td>{{ ++$key }}</td>
                           <td>{{$partner->name}}</td>
                           <td>{{$partner->mobile_number}}</td>
+                          <td>{{$partner->email}}</td>
+                          <td>{{ $partner->partnerDetails->category_id == '1' ? __('partner.insurance_company') : __('partner.money_lender') }}</td>
                           <td>{{$partner->email}}</td>
                           <td>
                             <a href="{{ url('/partner/edit/'.$partner->id) }}" class="btn btn-info btn-sm">{{ __('common.edit') }}</a>

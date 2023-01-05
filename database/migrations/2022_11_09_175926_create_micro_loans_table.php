@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInsurancesTable extends Migration
+class CreateMicroLoansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,17 @@ class CreateInsurancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('insurances', function (Blueprint $table) {
+        Schema::create('micro_loans', function (Blueprint $table) {
             $table->increments('id');
             $table->string('user_id');
-            $table->string('name');
+            $table->string('package_name')->nullable();
+            $table->string('amount')->nullable();
+            $table->string('processing_fee')->nullable();
+            $table->string('admin_fee')->nullable();
             $table->integer('status')->comment('1=active, 2=non-active');
-            $table->string('epolicy')->nullable();
-            $table->string('ecertificate')->nullable();
-            $table->string('important_notice')->nullable();
-            $table->string('insurance_plan')->nullable();
+            $table->string('money_lender_license')->nullable();
+            $table->string('advertising_license')->nullable();
+            $table->string('loan_agreement')->nullable();
             $table->string('description')->nullable();
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();
@@ -38,6 +40,6 @@ class CreateInsurancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('insurances');
+        Schema::dropIfExists('micro_loans');
     }
 }

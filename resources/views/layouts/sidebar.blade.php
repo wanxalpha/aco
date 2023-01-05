@@ -125,17 +125,31 @@
               </a>
             </li>
           @elseif(Auth::user()->role == '2')
-          <li class="nav-item">
-            <a href="{{ route('insurance.index') }}" class="nav-link 
-              @if($segment=='insurance')
-              active
-              @endif">
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                Insurance
-              </p>
-            </a>
-          </li>
+            @if(Auth::user()->partnerDetails && Auth::user()->partnerDetails->category_id == 1)
+              <li class="nav-item">
+                <a href="{{ route('insurance.index') }}" class="nav-link 
+                  @if($segment=='insurance')
+                  active
+                  @endif">
+                  <i class="nav-icon fa fa-th"></i>
+                  <p>
+                    Insurance
+                  </p>
+                </a>
+              </li>
+            @elseif(Auth::user()->partnerDetails && Auth::user()->partnerDetails->category_id == 2)
+              <li class="nav-item">
+                <a href="{{ route('microloan.index') }}" class="nav-link 
+                  @if($segment=='microloan')
+                  active
+                  @endif">
+                  <i class="nav-icon fa fa-th"></i>
+                  <p>
+                    Micro Loan
+                  </p>
+                </a>
+              </li>
+            @endif
           @endif
           <li class="nav-header">Action</li>
           <li class="nav-item">

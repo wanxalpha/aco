@@ -26,12 +26,17 @@ return [
     'email' => 'Email',
     'type' => 'Type',
     'category' => 'Category',
+    'sub_category' => 'Sub Category',
     'mobile_number' => 'Mobile Number',
     'phone_number' => 'Phone Number',
     'address' => 'Address',
     'description' => 'Description',
     'submit' => 'Submit',
     'add_more' => 'Add More',
+    'attachment' => 'Attachment',
+    'add' => 'Add',
+    'close' => 'Close',
+    'save' => 'Save',
 
 
     // placeholder
@@ -41,5 +46,7 @@ return [
     'enter_phone_no' => 'Enter phone number',
     'enter_description' => 'Enter description',
     'select_status' => 'Select Status',
+    'enter_sub_category' => 'Enter Sub Category',
+    'select_category' => 'Select Category',
 
 ];
